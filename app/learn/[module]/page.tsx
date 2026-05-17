@@ -71,6 +71,38 @@ const MODULES: Record<string, ModuleMeta> = {
     tags: ["综合", "可视化", "整合"],
     category: "01-stock-analysis",
   },
+  "07-ma-crossover-strategy": {
+    slug: "07-ma-crossover-strategy",
+    title: "MA 均线交叉策略",
+    description:
+      "最简单的均线交叉策略：MA5 作为买入/卖出信号，理解量化交易的基本逻辑。",
+    tags: ["策略", "均线", "聚宽"],
+    category: "02-trading-strategy",
+  },
+  "08-portfolio-context": {
+    slug: "08-portfolio-context",
+    title: "账户结构与持仓检查",
+    description:
+      "深入了解 context.portfolio 结构、持仓对象属性、子账户信息，为策略开发打基础。",
+    tags: ["聚宽", "API", "账户"],
+    category: "02-trading-strategy",
+  },
+  "09-order-cost-slippage": {
+    slug: "09-order-cost-slippage",
+    title: "交易成本与滑点设置",
+    description:
+      "配置 set_order_cost、set_slippage、set_option，让回测更贴近真实交易。",
+    tags: ["回测", "聚宽", "成本"],
+    category: "02-trading-strategy",
+  },
+  "10-backtest-reproducibility": {
+    slug: "10-backtest-reproducibility",
+    title: "回测可复现性",
+    description:
+      "为什么不同人的回测结果不同？如何让回测可复现？聚宽策略框架总结。",
+    tags: ["回测", "方法论", "聚宽"],
+    category: "02-trading-strategy",
+  },
 };
 
 /* -------------------------------------------------------

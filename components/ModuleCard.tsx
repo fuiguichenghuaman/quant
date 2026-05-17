@@ -50,6 +50,30 @@ const modules: ModuleData[] = [
     status: "completed",
     chartType: "line",
   },
+  {
+    slug: "07-ma-crossover-strategy",
+    name: "MA 均线交叉策略",
+    description: "最简单的均线交叉策略：MA5 买入/卖出信号，量化交易第一步。",
+    tags: ["策略", "聚宽"],
+    status: "in-progress",
+    chartType: "area",
+  },
+  {
+    slug: "09-order-cost-slippage",
+    name: "交易成本与滑点",
+    description: "配置手续费、滑点、成交量比例，让回测更贴近真实交易环境。",
+    tags: ["回测", "聚宽"],
+    status: "in-progress",
+    chartType: "line",
+  },
+  {
+    slug: "10-backtest-reproducibility",
+    name: "回测可复现性",
+    description: "为什么不同人的回测结果不同？如何让回测可复现？方法论总结。",
+    tags: ["方法论", "回测"],
+    status: "in-progress",
+    chartType: "bar",
+  },
 ];
 
 /* SVG chart preview illustrations */
