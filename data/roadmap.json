@@ -1,0 +1,158 @@
+{
+  "title": "量化学习路线图",
+  "subtitle": "从零基础到能独立写策略，一步一步来",
+  "stages": [
+    {
+      "id": "setup",
+      "name": "环境准备",
+      "description": "零基础必看！先把工具装好",
+      "color": "green",
+      "steps": [
+        {
+          "id": "python-install",
+          "name": "安装 Python",
+          "description": "下载 Python 3.10+，安装时勾选 Add to PATH",
+          "link": "https://www.python.org/downloads/",
+          "linkText": "Python 官网下载",
+          "completed": true
+        },
+        {
+          "id": "vscode-install",
+          "name": "安装 VS Code",
+          "description": "免费的代码编辑器，写 Python 用",
+          "link": "https://code.visualstudio.com/",
+          "linkText": "VS Code 官网下载",
+          "completed": true
+        },
+        {
+          "id": "pip-install",
+          "name": "安装 Python 库",
+          "description": "pip install numpy pandas matplotlib mplfinance",
+          "link": null,
+          "linkText": null,
+          "completed": true
+        },
+        {
+          "id": "jq-register",
+          "name": "注册聚宽（可选）",
+          "description": "聚宽是在线量化平台，可以跑策略回测",
+          "link": "https://www.joinquant.com/",
+          "linkText": "聚宽官网",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "python-basics",
+      "name": "Python 基础",
+      "description": "学会用 Python 处理股票数据",
+      "color": "yellow",
+      "steps": [
+        {
+          "id": "numpy-basics",
+          "name": "NumPy 股票数据基础",
+          "description": "用 NumPy 读取 CSV，算均值、方差、SMA、EMA",
+          "link": "/learn/01-numpy-basics",
+          "linkText": "开始学习",
+          "completed": true
+        },
+        {
+          "id": "pandas-basics",
+          "name": "Pandas 数据处理",
+          "description": "用 Pandas 做日期处理、分组统计、涨跌计算",
+          "link": "/learn/04-pandas-basics",
+          "linkText": "开始学习",
+          "completed": true
+        },
+        {
+          "id": "matplotlib-intro",
+          "name": "Matplotlib 画图入门",
+          "description": "学会用 Python 画折线图、柱状图",
+          "link": null,
+          "linkText": null,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "indicators",
+      "name": "技术指标",
+      "description": "看懂 K 线图和常用指标",
+      "color": "yellow",
+      "steps": [
+        {
+          "id": "kline",
+          "name": "K 线图可视化",
+          "description": "用 mplfinance 画 K 线图，叠加成交量和均线",
+          "link": "/learn/02-kline-visualization",
+          "linkText": "开始学习",
+          "completed": true
+        },
+        {
+          "id": "macd",
+          "name": "MACD 指标",
+          "description": "理解 DIF、DEA、柱状图，判断趋势",
+          "link": "/learn/03-macd-indicator",
+          "linkText": "开始学习",
+          "completed": true
+        },
+        {
+          "id": "kdj",
+          "name": "KDJ 指标",
+          "description": "K、D、J 三线，判断超买超卖",
+          "link": "/learn/05-kdj-indicator",
+          "linkText": "开始学习",
+          "completed": true
+        },
+        {
+          "id": "all-indicators",
+          "name": "综合指标图",
+          "description": "把 K 线、均线、MACD、KDJ 整合成一张图",
+          "link": "/learn/06-all-indicators",
+          "linkText": "开始学习",
+          "completed": true
+        }
+      ]
+    },
+    {
+      "id": "strategy",
+      "name": "策略实战",
+      "description": "开始写交易策略",
+      "color": "red",
+      "steps": [
+        {
+          "id": "ma-strategy",
+          "name": "MA 均线交叉策略",
+          "description": "最简单的策略：均线交叉买卖",
+          "link": "/learn/07-ma-crossover-strategy",
+          "linkText": "开始学习",
+          "completed": true
+        },
+        {
+          "id": "backtest-intro",
+          "name": "回测基础",
+          "description": "了解回测原理，学会用回测验证策略",
+          "link": "/backtest",
+          "linkText": "试试回测",
+          "completed": false
+        },
+        {
+          "id": "cost-slippage",
+          "name": "交易成本与滑点",
+          "description": "手续费、滑点怎么影响回测结果",
+          "link": "/learn/09-order-cost-slippage",
+          "linkText": "开始学习",
+          "completed": true
+        },
+        {
+          "id": "reproducibility",
+          "name": "回测可复现性",
+          "description": "为什么不同人回测结果不同？如何保证可复现",
+          "link": "/learn/10-backtest-reproducibility",
+          "linkText": "开始学习",
+          "completed": true
+        }
+      ]
+    }
+  ]
+}

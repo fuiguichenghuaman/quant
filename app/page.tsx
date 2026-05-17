@@ -2,10 +2,9 @@
  * Home Page - 量化学习实验室首页
  *
  * 页面结构：
- * [Hero] -> [ProgressDashboard] -> [ModuleCard 网格] -> [LearningRoadmap] -> [LearningLog]
+ * [Hero] -> [ModuleCard 网格] -> [研究工具] -> [LearningRoadmap] -> [LearningLog]
  */
 
-import ProgressDashboard from "@/components/ProgressDashboard";
 import ModuleCardGrid from "@/components/ModuleCard";
 import LearningRoadmap from "@/components/LearningRoadmap";
 import LearningLog from "@/components/LearningLog";
@@ -91,9 +90,6 @@ export default function Home() {
           <span className="h-px w-16 bg-border" />
         </div>
       </section>
-
-      {/* ===== Progress Dashboard ===== */}
-      <ProgressDashboard />
 
       {/* ===== Module Cards ===== */}
       <ModuleCardGrid />

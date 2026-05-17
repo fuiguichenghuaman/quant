@@ -1,122 +1,206 @@
-/**
- * LearningRoadmap - 学习路线图
- *
- * 参考 Voxyz SBTI 头像行设计：
- * 横向滚动展示学习路径节点，节点间有连接线。
- * 使用 overflow-x-auto 实现横向滚动。当前使用静态 mock 数据。
- */
+"use client";
 
-type NodeStatus = "completed" | "current" | "upcoming";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import defaultRoadmapData from "@/data/roadmap.json";
 
-interface RoadmapNode {
+/* ---- Types ---- */
+
+interface RoadmapStep {
   id: string;
   name: string;
-  status: NodeStatus;
+  description: string;
+  link: string | null;
+  linkText: string | null;
+  completed: boolean;
 }
 
-const roadmapNodes: RoadmapNode[] = [
-  { id: "basics", name: "量化基础概念", status: "completed" },
-  { id: "data", name: "数据获取与清洗", status: "completed" },
-  { id: "indicators", name: "技术指标研究", status: "completed" },
-  { id: "ma", name: "均线策略", status: "completed" },
-  { id: "macd", name: "MACD 策略", status: "completed" },
-  { id: "rsi", name: "RSI 策略", status: "current" },
-  { id: "backtest", name: "回测框架", status: "current" },
-  { id: "risk", name: "风控基础", status: "upcoming" },
-  { id: "portfolio", name: "组合管理", status: "upcoming" },
-  { id: "optimization", name: "策略优化", status: "upcoming" },
-  { id: "paper-trade", name: "模拟交易", status: "upcoming" },
-  { id: "review", name: "复盘方法论", status: "upcoming" },
-];
+interface RoadmapStage {
+  id: string;
+  name: string;
+  description: string;
+  color: "green" | "yellow" | "red";
+  steps: RoadmapStep[];
+}
 
-const statusStyles: Record<NodeStatus, { ring: string; dot: string; text: string }> = {
-  completed: {
-    ring: "border-accent-green",
-    dot: "bg-accent-green",
-    text: "text-foreground",
+interface RoadmapData {
+  title: string;
+  subtitle: string;
+  stages: RoadmapStage[];
+}
+
+/* ---- Color mapping ---- */
+
+const colorMap: Record<
+  RoadmapStage["color"],
+  { border: string; bg: string; dot: string }
+> = {
+  green: {
+    border: "border-l-accent-green",
+    bg: "bg-accent-green/5",
+    dot: "text-accent-green",
   },
-  current: {
-    ring: "border-accent-yellow",
-    dot: "bg-accent-yellow",
-    text: "text-foreground font-semibold",
+  yellow: {
+    border: "border-l-accent-yellow",
+    bg: "bg-accent-yellow/5",
+    dot: "text-accent-yellow",
   },
-  upcoming: {
-    ring: "border-border",
-    dot: "bg-muted/30",
-    text: "text-muted",
+  red: {
+    border: "border-l-accent-red",
+    bg: "bg-accent-red/5",
+    dot: "text-accent-red",
   },
 };
 
+/* ---- SVG icons ---- */
+
+function CheckIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 13l4 4L19 7" />
+    </svg>
+  );
+}
+
+function CircleIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <circle cx="12" cy="12" r="8" />
+    </svg>
+  );
+}
+
+/* ---- Step row component ---- */
+
+function StepRow({ step, dotColor }: { step: RoadmapStep; dotColor: string }) {
+  const isExternal = step.link?.startsWith("http");
+
+  const linkContent = step.link && step.linkText && (
+    <span className="ml-2 shrink-0">
+      {isExternal ? (
+        <a
+          href={step.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-accent-red hover:underline"
+        >
+          {step.linkText}
+        </a>
+      ) : (
+        <Link href={step.link} className="text-sm text-accent-red hover:underline">
+          {step.linkText}
+        </Link>
+      )}
+    </span>
+  );
+
+  return (
+    <div className="flex items-start gap-3 py-2">
+      {/* Status icon */}
+      <span className={`mt-0.5 shrink-0 ${dotColor}`}>
+        {step.completed ? (
+          <CheckIcon className="text-accent-green" />
+        ) : (
+          <CircleIcon className="text-muted/40" />
+        )}
+      </span>
+
+      {/* Text content */}
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-wrap items-baseline gap-x-1">
+          <span
+            className={`text-sm font-medium ${
+              step.completed ? "text-foreground" : "text-muted"
+            }`}
+          >
+            {step.name}
+          </span>
+          {linkContent}
+        </div>
+        {step.description && (
+          <p className="mt-0.5 text-xs leading-relaxed text-muted">
+            {step.description}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ---- Stage card component ---- */
+
+function StageCard({ stage }: { stage: RoadmapStage }) {
+  const colors = colorMap[stage.color];
+
+  return (
+    <div
+      className={`rounded-xl border border-border border-l-4 ${colors.border} ${colors.bg} bg-card-bg p-5 shadow-sm`}
+    >
+      <h3
+        className="text-lg font-bold text-foreground"
+        style={{ fontFamily: "var(--font-patrick-hand)" }}
+      >
+        {stage.name}
+      </h3>
+      <p className="mb-3 text-xs text-muted">{stage.description}</p>
+
+      <div className="divide-y divide-border/50">
+        {stage.steps.map((step) => (
+          <StepRow key={step.id} step={step} dotColor={colors.dot} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ---- Main component ---- */
+
 export default function LearningRoadmap() {
+  const [data, setData] = useState<RoadmapData>(defaultRoadmapData as RoadmapData);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("qlab_roadmap_data");
+    if (saved) {
+      try {
+        setData(JSON.parse(saved));
+      } catch {
+        // ignore malformed data
+      }
+    }
+  }, []);
+
   return (
     <section className="py-12">
       <h2
-        className="mb-8 text-center text-2xl font-bold text-foreground"
+        className="mb-2 text-center text-2xl font-bold text-foreground"
         style={{ fontFamily: "var(--font-patrick-hand)" }}
       >
-        学习路线图
+        {data.title}
       </h2>
+      <p className="mb-8 text-center text-sm text-muted">{data.subtitle}</p>
 
-      {/* Scrollable container */}
-      <div className="overflow-x-auto pb-4">
-        <div className="flex items-center gap-0 min-w-max px-4">
-          {roadmapNodes.map((node, i) => {
-            const style = statusStyles[node.status];
-            return (
-              <div key={node.id} className="flex items-center">
-                {/* Node */}
-                <div className="flex flex-col items-center">
-                  {/* Circle */}
-                  <div
-                    className={`flex h-10 w-10 items-center justify-center rounded-full border-2 ${style.ring} bg-card-bg transition-colors`}
-                  >
-                    {node.status === "completed" ? (
-                      <svg className="h-5 w-5 text-accent-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                    ) : (
-                      <span className={`h-2.5 w-2.5 rounded-full ${style.dot} ${node.status === "current" ? "animate-pulse-soft" : ""}`} />
-                    )}
-                  </div>
-
-                  {/* Label */}
-                  <span className={`mt-2 max-w-[80px] text-center text-xs leading-tight ${style.text}`}>
-                    {node.name}
-                  </span>
-                </div>
-
-                {/* Connector line */}
-                {i < roadmapNodes.length - 1 && (
-                  <div
-                    className={`mx-1 h-0.5 w-8 sm:w-12 ${
-                      node.status === "completed" && roadmapNodes[i + 1].status !== "upcoming"
-                        ? "bg-accent-green/60"
-                        : node.status === "completed"
-                          ? "bg-accent-green/30"
-                          : "bg-border"
-                    }`}
-                  />
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Legend */}
-      <div className="mt-4 flex items-center justify-center gap-6 text-xs text-muted">
-        <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-accent-green" />
-          已完成
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-accent-yellow animate-pulse-soft" />
-          进行中
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-muted/30" />
-          未开始
-        </span>
+      <div className="grid gap-6 md:grid-cols-2">
+        {data.stages.map((stage) => (
+          <StageCard key={stage.id} stage={stage} />
+        ))}
       </div>
     </section>
   );
