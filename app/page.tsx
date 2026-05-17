@@ -98,6 +98,57 @@ export default function Home() {
       {/* ===== Module Cards ===== */}
       <ModuleCardGrid />
 
+      {/* ===== Research Tools ===== */}
+      <section className="py-12">
+        <h2
+          className="mb-2 text-center text-2xl font-bold text-foreground"
+          style={{ fontFamily: "var(--font-patrick-hand)" }}
+        >
+          研究工具
+        </h2>
+        <p className="mb-8 text-center text-sm text-muted">
+          从学习到实践，一站式量化研究工具
+        </p>
+        <div className="grid gap-6 sm:grid-cols-3">
+          <a
+            href="/strategies"
+            className="group flex flex-col items-center rounded-xl border border-border bg-card-bg p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
+          >
+            <div className="mb-4 rounded-lg bg-accent-red/10 p-3 text-accent-red">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+              </svg>
+            </div>
+            <h3 className="mb-2 text-base font-semibold text-foreground group-hover:text-accent-red transition-colors">策略档案库</h3>
+            <p className="text-center text-sm text-muted">策略描述、指标公式、参数说明、风险声明</p>
+          </a>
+          <a
+            href="/backtest"
+            className="group flex flex-col items-center rounded-xl border border-border bg-card-bg p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
+          >
+            <div className="mb-4 rounded-lg bg-accent-yellow/10 p-3 text-accent-yellow">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+              </svg>
+            </div>
+            <h3 className="mb-2 text-base font-semibold text-foreground group-hover:text-accent-red transition-colors">在线回测</h3>
+            <p className="text-center text-sm text-muted">选择策略、设置参数、运行回测、查看结果</p>
+          </a>
+          <a
+            href="/data"
+            className="group flex flex-col items-center rounded-xl border border-border bg-card-bg p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
+          >
+            <div className="mb-4 rounded-lg bg-accent-green/10 p-3 text-accent-green">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+              </svg>
+            </div>
+            <h3 className="mb-2 text-base font-semibold text-foreground group-hover:text-accent-red transition-colors">数据管理</h3>
+            <p className="text-center text-sm text-muted">上传 CSV、预览数据、查看统计指标</p>
+          </a>
+        </div>
+      </section>
+
       {/* ===== Learning Roadmap ===== */}
       <LearningRoadmap />
 

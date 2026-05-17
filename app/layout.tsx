@@ -81,6 +81,18 @@ function Navbar() {
             学习日志
           </Link>
           <Link
+            href="/strategies"
+            className="text-foreground/70 transition-colors hover:text-accent-red"
+          >
+            策略档案
+          </Link>
+          <Link
+            href="/backtest"
+            className="text-foreground/70 transition-colors hover:text-accent-red"
+          >
+            回测
+          </Link>
+          <Link
             href="/about"
             className="text-foreground/70 transition-colors hover:text-accent-red"
           >
