@@ -47,6 +47,30 @@ const MODULES: Record<string, ModuleMeta> = {
     tags: ["指标", "策略", "EMA"],
     category: "01-stock-analysis",
   },
+  "04-pandas-basics": {
+    slug: "04-pandas-basics",
+    title: "Pandas 股票数据基础",
+    description:
+      "用 pandas 读取 CSV 数据，掌握 DataFrame 操作：日期处理、分组统计、涨跌计算。",
+    tags: ["基础", "Pandas", "数据处理"],
+    category: "01-stock-analysis",
+  },
+  "05-kdj-indicator": {
+    slug: "05-kdj-indicator",
+    title: "KDJ 指标",
+    description:
+      "计算 KDJ 指标（K、D、J 三线），理解 rolling 窗口和 expanding 窗口，绘制 KDJ 图。",
+    tags: ["指标", "可视化", "KDJ"],
+    category: "01-stock-analysis",
+  },
+  "06-all-indicators": {
+    slug: "06-all-indicators",
+    title: "综合技术指标图",
+    description:
+      "把 K 线、均线、成交量、MACD、KDJ 整合到一张图里，四区域综合展示。",
+    tags: ["综合", "可视化", "整合"],
+    category: "01-stock-analysis",
+  },
 };
 
 /* -------------------------------------------------------

@@ -75,6 +75,12 @@ function Navbar() {
             学习路径
           </Link>
           <Link
+            href="/log"
+            className="text-foreground/70 transition-colors hover:text-accent-red"
+          >
+            学习日志
+          </Link>
+          <Link
             href="/about"
             className="text-foreground/70 transition-colors hover:text-accent-red"
           >
