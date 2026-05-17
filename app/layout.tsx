@@ -93,6 +93,24 @@ function Navbar() {
             回测
           </Link>
           <Link
+            href="/community"
+            className="text-foreground/70 transition-colors hover:text-accent-red"
+          >
+            社区
+          </Link>
+          <Link
+            href="/ai-analysis"
+            className="text-foreground/70 transition-colors hover:text-accent-red"
+          >
+            AI 分析
+          </Link>
+          <Link
+            href="/login"
+            className="text-foreground/70 transition-colors hover:text-accent-red"
+          >
+            登录
+          </Link>
+          <Link
             href="/about"
             className="text-foreground/70 transition-colors hover:text-accent-red"
           >
